@@ -187,6 +187,8 @@ body = re.sub(r"<script>\s*\(function \(\) \{.*?</script>", "", body, flags=re.S
 
 # copy rule: no em dashes in Nessoo copy
 body = body.replace(" — ", ", ").replace("—", ", ")
+# contact address
+body = body.replace("hello@nessoo.com", "admin@nessoo.com")
 
 head = """<!DOCTYPE html>
 <html lang="en">
