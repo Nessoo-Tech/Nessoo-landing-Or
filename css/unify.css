@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Unify: one type system and one palette across the four source designs.
+   site.css holds each design's original CSS; this file only re-points tokens
+   and smooths the seams between sections.
+   ========================================================================== */
+
+:root {
+  --n-sans: "General Sans", "Helvetica Neue", Arial, sans-serif;
+  --n-serif: "Instrument Serif", "Times New Roman", serif;
+  --n-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --n-ink: #1f1f1f;
+  --n-ink-2: #6b6b6e;
+  --n-paper: #fff;
+  --n-surface: #f6f6f4;
+  --n-green: #0a8448;
+  --n-green-hover: #097a42;
+  --n-green-ink: #08743f;
+  --n-green-soft: #e4f4ea;
+  --n-forest: #1d3a2a;
+  --n-mint: #c8f1dc;
+
+  --n-h2: clamp(36px, 3.6vw, 52px);
+
+  /* v3 (ly-) */
+  --ly-font: var(--n-sans);
+  --ly-ui: var(--n-sans);
+  --ly-ink: var(--n-ink);
+  --ly-surface: var(--n-surface);
+  --ly-h2xl: var(--n-h2);
+
+  /* v1 (m-) */
+  --m-font: var(--n-sans);
+  --m-mono: var(--n-mono);
+  --m-fw: 400;
+  --m-fw-display: 500;
+  --m-text: var(--n-ink);
+  --m-accent: var(--n-forest);
+  --m-fs-display: var(--n-h2);
+  --m-fs-h2: var(--n-h2);
+
+  /* v2 (p-) */
+  --font: var(--n-sans);
+  --serif: var(--n-serif);
+  --violet: var(--n-green);
+  --brand-green: var(--n-forest);
+
+  /* v5 (s-) */
+  --s-font: var(--n-sans);
+  --s-ink: var(--n-ink);
+  --s-blue: var(--n-green);
+  --s-blue-hover: var(--n-green-hover);
+  --s-blue-soft: #0a84480f;
+  --s-blue-line: #0a844829;
+  --s-canvas: var(--n-surface);
+  --s-fs-h2: var(--n-h2);
+}
+
+/* JS handles smooth anchor scrolling; CSS smooth scrolling fights the pinned scenes */
+html { scroll-behavior: auto; }
+
+/* ---------------------------------------------------------------- one grid
+   Every contained section lines up on the same 1240px column. */
+:root {
+  --n-container: 1240px;
+  --ly-container-wide: var(--n-container);
+  --ly-gutter: 48px;
+  --m-container: var(--n-container);
+  --m-gutter: 48px;
+  --s-container: var(--n-container);
+  --s-gutter: 48px;
+}
+@media (width <= 767px) {
+  :root { --ly-gutter: 20px; --m-gutter: 20px; --s-gutter: 20px; --s-gutter-m: 20px; }
+}
+
+/* ---------------------------------------------------------------- one eyebrow
+   Section labels all use the mono eyebrow from the v1 design. */
+.m-eyebrow,
+.s-eyebrow,
+.ly-label,
+.p-ll-card > .p-micro {
+  font-family: var(--n-mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--n-ink);
+  border: 0;
+  padding: 0;
+}
+.ly-final .ly-label,
+.p-ll-card > .p-micro { color: #ffffffb3; }
+.s-eyebrow { margin-bottom: 18px; }
+.ly-founders .ly-label { margin-bottom: 14px; }
+.p-ll-card > .p-micro { margin-top: 28px; }
+
+/* ---------------------------------------------------------------- v2 palette moved onto Nessoo green */
+/* phone screens */
+.p-ui.is-tint-lilac { background: linear-gradient(#e6f5ec 0%, #fff 46%); }
+.p-av, .p-row-ic.is-violet, .p-live-av { background: var(--n-green-soft); color: var(--n-green); }
+.p-idc { background: linear-gradient(135deg, #fff 0%, #e4f4ea 100%); box-shadow: 0 calc(var(--p) * 10) calc(var(--p) * 26) #0a844829; }
+.p-idc-ph { background: linear-gradient(#cfeedd, #9fd9bb); }
+.p-idc-l b { color: var(--n-green-ink); }
+.p-idc-l i { background: #0a84482e; }
+.p-scan { background: #eef8f2; }
+
+/* stage atmospheres: pink and lilac blooms become green and mint */
+.p-atmo-l.is-bloom:after {
+  background-image:
+    radial-gradient(at 70% 35%, #bfeedbbf 0, #bfeedb00 18%),
+    radial-gradient(at 40% 75%, #2fa59e66 0, #2fa59e00 28%),
+    radial-gradient(at 34% 25%, #c8f1dcbf 0, #c8f1dc00 22%),
+    radial-gradient(at 60% 64%, #bfeedbbf 0, #bfeedb00 36%),
+    radial-gradient(at 46% 53%, #3fd194a6 0, #c8f1dc00 53%);
+}
+.p-atmo-l.is-lilac {
+  background:
+    radial-gradient(70% 60% at 50% 100%, #bfe6d4 0%, #bfe6d400 70%),
+    radial-gradient(50% 40% at 85% 20%, #e3f3ec 0%, #e3f3ec00 70%),
+    linear-gradient(#fff 0%, #f2faf6 50%, #e1f2ea 100%);
+}
+.p-atmo-l.is-pink:after {
+  background-image:
+    radial-gradient(at 70% 35%, #c8f1dcd9 0, #c8f1dc00 22%),
+    radial-gradient(at 40% 75%, #2fa59e59 0, #2fa59e00 30%),
+    radial-gradient(at 30% 30%, #edfeb1cc 0, #edfeb100 26%),
+    radial-gradient(at 62% 66%, #c8f1dccc 0, #c8f1dc00 38%),
+    radial-gradient(at 48% 55%, #3fd19480 0, #c8f1dc00 55%);
+}
+.p-atmo-l.is-dusk {
+  background:
+    radial-gradient(70% 70% at 0 100%, #f6d8b9 0%, #f6d8b900 72%),
+    radial-gradient(70% 70% at 100% 100%, #a8dcc4 0%, #a8dcc400 72%),
+    linear-gradient(#fffaf6 0%, #f8f1e8 55%, #e9f3ec 100%);
+}
+
+/* the stage now opens "How it works" instead of the v2 hero */
+.p-hero-copy .m-eyebrow { margin-bottom: 18px; }
+.p-hero-h {
+  color: var(--n-ink);
+  font-size: clamp(44px, 5vw, 72px);
+  letter-spacing: -.035em;
+}
+.p-hero-sub { color: var(--n-ink-2); }
+
+/* landlords card: lilac label becomes the mono eyebrow above */
+
+/* ---------------------------------------------------------------- v5 Homey: warm beige panel moves to the shared surface */
+.s-homey__stage { background: var(--n-surface); }
+.s-homey { background: var(--n-paper); }
+
+/* ---------------------------------------------------------------- neighborhoods row gets its own breathing room */
+.p-hoods { padding-top: clamp(72px, 9vw, 140px); }
+.p-chap.p-matches { padding-top: clamp(96px, 12vw, 180px); }
+
+/* ---------------------------------------------------------------- "Try it" band: v5 search pill on the matches section */
+.s-try {
+  max-width: calc(var(--n-container) + 2 * var(--s-gutter));
+  margin: clamp(64px, 8vw, 120px) auto 0;
+  padding: 0 var(--s-gutter);
+  display: grid;
+  gap: 28px;
+  text-align: center;
+  justify-items: center;
+}
+.s-try__copy { display: grid; gap: 12px; justify-items: center; max-width: 620px; }
+.s-try__h {
+  font-size: var(--n-h2);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1.08;
+  color: var(--n-ink);
+}
+.s-try__p { color: var(--n-ink-2); font-size: 17px; line-height: 1.5; }
+.s-try__bar { width: 100%; max-width: 920px; position: relative; z-index: 5; }
+.s-try .s-pill { background: #fff; box-shadow: 0 1px 2px #0000000f, 0 18px 48px #0000001f; text-align: left; }
+.s-try .s-mpill { margin-inline: auto; }
+
+/* mobile step cards follow the same green palette */
+.p-sc--1 { background: linear-gradient(#f2faf6 0%, #d4efe1 100%); }
+.p-sc--5 { background: radial-gradient(70% 50% at 50% 70%, #c8f1dce6, #c8f1dc00 70%), radial-gradient(60% 40% at 40% 90%, #3fd19459, #3fd19400 70%), #fff; }
+.p-sc--6 { background: radial-gradient(80% 60% at 0 100%, #f6d8b9, #f6d8b900 72%), radial-gradient(80% 60% at 100% 100%, #a8dcc4, #a8dcc400 72%), #fff8f3; }
+
+/* Homey chat card (v2) as its own section */
+.p-homeysec { padding: clamp(72px, 9vw, 140px) 0 0; }
+.p-homeysec .p-chat-card { margin-top: 0; }
