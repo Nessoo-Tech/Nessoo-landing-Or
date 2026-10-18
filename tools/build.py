@@ -157,6 +157,40 @@ try_band = (
 # ---------------------------------------------------------------- page
 P = lambda s: v2_html(s)  # noqa: E731
 
+# ---------------------------------------------------------------- reels row ("New York, on camera.")
+import json, html as _html  # noqa: E402
+_reels = json.load(open(os.path.join(ROOT, "tools", "reels.json")))
+_IG = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
+       '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>')
+_PLAY = '<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>'
+
+
+def _reel(r, dup=False):
+    e = _html.escape
+    views = '<span class="rl-views">%s%s</span>' % (_PLAY, e(r["views"])) if r.get("views") else ""
+    attrs = ' tabindex="-1" aria-hidden="true"' if dup else ' aria-label="Play: %s"' % e(r["caption"])
+    return (
+        '<button class="rl-card" type="button" data-reel data-src="%s" data-url="%s"%s>'
+        '<video muted playsinline loop preload="none" poster="%s" aria-hidden="true"><source src="%s" type="video/mp4"></video>'
+        '<span class="rl-cap">%s</span>%s<span class="rl-play" aria-hidden="true">%s</span></button>'
+    ) % (e(r["video"]), e(r.get("url", "")), attrs, e(r["poster"]), e(r["video"]), e(r["caption"]), views,
+         '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>')
+
+
+_h = _reels["handle"]
+reels_section = (
+    '<section class="rl" id="on-camera" aria-labelledby="rl-h">'
+    '<div class="rl-head"><h2 id="rl-h">New York, on camera.</h2>'
+    '<p>Apartment tours and street interviews from our Instagram. Tap one to watch.</p>'
+    '<a class="rl-follow" href="https://www.instagram.com/%s/" target="_blank" rel="noopener">%s Follow @%s <span aria-hidden="true">→</span></a></div>'
+    '<div class="rl-row" data-reels><div class="rl-track">%s%s</div></div>'
+    '<div class="rl-modal" data-reel-modal hidden role="dialog" aria-modal="true" aria-label="Reel">'
+    '<div class="rl-modal-box"><video controls playsinline></video>'
+    '<div class="rl-modal-bar"><a class="rl-modal-ig" target="_blank" rel="noopener" hidden>%s Watch on Instagram</a>'
+    '<button class="rl-modal-x" type="button" data-reel-close aria-label="Close">×</button></div></div></div>'
+    '</section>'
+) % (_h, _IG, _h, "".join(_reel(r) for r in _reels["reels"]), "".join(_reel(r, True) for r in _reels["reels"]), _IG)
+
 body = "\n".join(
     [
         '<a class="ly-skip" href="#main">Skip to content</a>',
@@ -168,7 +202,7 @@ body = "\n".join(
         '<div class="p-app">' + P(v2_stage) + P(v2_steps_stack) + "</div>",
         '<div class="m-root">' + v1_floats + v1_trust + "</div>",
         # Homey -> neighborhoods -> matches + try it, then renter proof, then the landlord turn
-        '<div class="p-app">' + P(v2_chat_section) + P(v2_hood_section) + P(v2_matches)[: -len("</section>")] + try_band + "</section>" + P(v2_quotes) + P(v2_land) + "</div>",
+        '<div class="p-app">' + P(v2_chat_section) + P(v2_hood_section) + P(v2_matches)[: -len("</section>")] + try_band + "</section>" + P(v2_quotes) + reels_section + P(v2_land) + "</div>",
         v3_founders,
         v3_faq,
         v3_final,

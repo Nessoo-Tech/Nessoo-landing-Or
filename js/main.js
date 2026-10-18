@@ -830,6 +830,48 @@ function finalFilm() {
   }, { rootMargin: '200px 0px' }).observe(v);
 }
 
+/* ------------------------------------------------------------------ reels row: muted previews in view, tap to watch with sound */
+function reels() {
+  const row = $('[data-reels]');
+  const modal = $('[data-reel-modal]');
+  if (!row || !modal) return;
+  const cards = $$('[data-reel]', row);
+  const player = $('video', modal);
+  const ig = $('.rl-modal-ig', modal);
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver((es) => es.forEach(({ target, isIntersecting }) => {
+      const v = $('video', target);
+      if (isIntersecting) { v.preload = 'auto'; v.play()?.catch?.(() => {}); }
+      else if (!v.paused) v.pause();
+    }), { threshold: 0.35 });
+    cards.forEach((c) => io.observe(c));
+  }
+  let last = null;
+  const close = () => {
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    modal.hidden = true;
+    unlock();
+    last?.focus();
+  };
+  cards.forEach((c) => c.addEventListener('click', () => {
+    last = c;
+    player.src = c.dataset.src;
+    player.poster = $('video', c).poster;
+    player.muted = false;
+    ig.hidden = !c.dataset.url;
+    if (c.dataset.url) ig.href = c.dataset.url;
+    modal.hidden = false;
+    lock();
+    player.play()?.catch?.(() => {});
+    $('[data-reel-close]', modal).focus();
+  }));
+  $('[data-reel-close]', modal).addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+}
+
 nav();
 hero();
 reveals();
@@ -840,6 +882,7 @@ scrollScenes();
 hoodRow();
 homeyCard();
 homeyAndMatching();
+reels();
 anchors();
 faq();
 finalFilm();

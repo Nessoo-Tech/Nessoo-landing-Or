@@ -1,0 +1,13 @@
+{
+  "_note": "Reels row ('New York, on camera.'). Each reel: video + poster in shared/reels/, caption, view count as shown on Instagram, and the post URL. Entries with placeholder:true use stand-in clips until the real reels arrive.",
+  "handle": "mynessoo",
+  "reels": [
+    {"video": "/shared/video/hero-vertical.mp4", "poster": "/shared/video/hero-vertical-poster.jpg", "caption": "Literally the craziest apartment", "views": "", "url": "", "placeholder": true},
+    {"video": "/shared/video/ch4-door.mp4", "poster": "/shared/video/ch4-door-poster.jpg", "caption": "One of the rarest apartments in NYC", "views": "", "url": "", "placeholder": true},
+    {"video": "/shared/video/ch2-stoop.mp4", "poster": "/shared/video/ch2-stoop-poster.jpg", "caption": "Street interview", "views": "", "url": "", "placeholder": true},
+    {"video": "/shared/video/ch3-key.mp4", "poster": "/shared/video/ch3-key-poster.jpg", "caption": "You saw those ladders? We got the kitchen.", "views": "", "url": "", "placeholder": true},
+    {"video": "/shared/video/ch1-city.mp4", "poster": "/shared/video/ch1-city-poster.jpg", "caption": "Street interview", "views": "", "url": "", "placeholder": true},
+    {"video": "/shared/video/hero-vertical.mp4", "poster": "/shared/video/hero-vertical-poster.jpg", "caption": "Brokers are going to hate me for showing this", "views": "", "url": "", "placeholder": true},
+    {"video": "/shared/video/ch4-door.mp4", "poster": "/shared/video/ch4-door-poster.jpg", "caption": "Apartment tour", "views": "", "url": "", "placeholder": true}
+  ]
+}

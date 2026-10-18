@@ -304,3 +304,158 @@ html { scroll-behavior: auto; }
 @media (width <= 767px) {
   .ll-mkt { grid-template-columns: 1fr; }
 }
+
+/* ---------------------------------------------------------------- reels row: "New York, on camera."
+   Dark full-bleed band, 9:16 cards that drift slowly, muted previews, tap to watch with sound. */
+.rl {
+  margin-top: clamp(80px, 10vw, 150px);
+  padding: clamp(72px, 8vw, 120px) 0 clamp(72px, 8vw, 112px);
+  background: #121212;
+  color: #fff;
+  overflow: hidden;
+}
+.rl-head { text-align: center; padding: 0 var(--s-gutter, 20px); display: grid; justify-items: center; gap: 18px; }
+.rl-head h2 {
+  font-size: var(--n-h2);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+.rl-head p { max-width: 26em; color: #ffffffa6; font-size: 18px; line-height: 1.6; text-wrap: balance; }
+.rl-follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px #ffffff2e;
+  transition: background .2s;
+}
+.rl-follow:hover { background: #ffffff14; }
+
+.rl-row { margin-top: clamp(48px, 6vw, 80px); overflow-x: auto; scrollbar-width: none; }
+.rl-row::-webkit-scrollbar { display: none; }
+.rl-track { display: flex; gap: 16px; width: max-content; padding: 0 16px; animation: rl-drift 70s linear infinite; }
+.rl-row:hover .rl-track,
+.rl-row:focus-within .rl-track { animation-play-state: paused; }
+@keyframes rl-drift { to { transform: translateX(calc(-50% - 8px)); } }
+
+.rl-card {
+  position: relative;
+  flex: none;
+  width: clamp(200px, 17vw, 260px);
+  aspect-ratio: 9 / 16;
+  border: 0;
+  padding: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+.rl-card:hover { transform: translateY(-6px); }
+.rl-card:focus-visible { outline: 2px solid var(--n-mint); outline-offset: 3px; }
+.rl-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rl-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0000 45%, #0000008c 100%);
+  pointer-events: none;
+}
+.rl-cap {
+  position: absolute;
+  z-index: 1;
+  left: 14px;
+  right: 14px;
+  top: 62%;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-shadow: 0 1px 3px #000c, 0 0 1px #000;
+  text-wrap: balance;
+}
+.rl-views {
+  position: absolute;
+  z-index: 1;
+  left: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.rl-play {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 46%;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  transform: translate(-50%, -50%) scale(.85);
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+}
+.rl-card:hover .rl-play,
+.rl-card:focus-visible .rl-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+.rl-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #000000d9;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.rl-modal[hidden] { display: none; }
+.rl-modal-box { display: grid; gap: 12px; width: min(420px, 100%); }
+.rl-modal-box video {
+  width: 100%;
+  max-height: calc(100vh - 120px);
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #000;
+}
+.rl-modal-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rl-modal-ig { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 15px; font-weight: 500; }
+.rl-modal-x {
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff1f;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (width <= 767px) {
+  .rl-track { animation: none; }
+  .rl-track > [aria-hidden="true"] { display: none; }
+  .rl-row { scroll-snap-type: x mandatory; scroll-padding: 0 16px; }
+  .rl-card { width: 62vw; scroll-snap-align: start; }
+  .rl-play { opacity: 1; transform: translate(-50%, -50%) scale(.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rl-track { animation: none; }
+  .rl-track > [aria-hidden="true"] { display: none; }
+}
