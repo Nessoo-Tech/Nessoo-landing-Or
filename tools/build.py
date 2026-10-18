@@ -185,11 +185,17 @@ reels_section = (
     '<a class="rl-follow" href="https://www.instagram.com/%s/" target="_blank" rel="noopener">%s Follow @%s <span aria-hidden="true">→</span></a></div>'
     '<div class="rl-row" data-reels><div class="rl-track">%s%s</div></div>'
     '<div class="rl-modal" data-reel-modal hidden role="dialog" aria-modal="true" aria-label="Reel">'
+    '<button class="rl-modal-x" type="button" data-reel-close aria-label="Close">'
+    '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>'
     '<div class="rl-modal-box"><video controls playsinline></video>'
-    '<div class="rl-modal-bar"><a class="rl-modal-ig" target="_blank" rel="noopener" hidden>%s Watch on Instagram</a>'
-    '<button class="rl-modal-x" type="button" data-reel-close aria-label="Close">×</button></div></div></div>'
+    '<div class="rl-modal-bar"><div class="rl-modal-meta"><p class="rl-modal-cap" data-reel-cap></p>'
+    '<a class="rl-modal-ig" data-reel-ig href="https://www.instagram.com/%s/" target="_blank" rel="noopener">Watch on Instagram</a></div>'
+    '<div class="rl-modal-nav">'
+    '<button class="rl-round" type="button" data-reel-prev aria-label="Previous reel"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>'
+    '<button class="rl-round" type="button" data-reel-next aria-label="Next reel"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>'
+    '</div></div></div></div>'
     '</section>'
-) % (_h, _IG, _h, "".join(_reel(r) for r in _reels["reels"]), "".join(_reel(r, True) for r in _reels["reels"]), _IG)
+) % (_h, _IG, _h, "".join(_reel(r) for r in _reels["reels"]), "".join(_reel(r, True) for r in _reels["reels"]), _h)
 
 body = "\n".join(
     [

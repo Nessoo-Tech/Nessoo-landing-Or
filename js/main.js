@@ -837,7 +837,7 @@ function reels() {
   if (!row || !modal) return;
   const cards = $$('[data-reel]', row);
   const player = $('video', modal);
-  const ig = $('.rl-modal-ig', modal);
+  const ig = $('[data-reel-ig]', modal);
   if ('IntersectionObserver' in window && !reduce) {
     const io = new IntersectionObserver((es) => es.forEach(({ target, isIntersecting }) => {
       const v = $('video', target);
@@ -846,7 +846,23 @@ function reels() {
     }), { threshold: 0.35 });
     cards.forEach((c) => io.observe(c));
   }
+  const reals = cards.filter((c) => c.getAttribute('aria-hidden') !== 'true');
+  const cap = $('[data-reel-cap]', modal);
+  const prev = $('[data-reel-prev]', modal);
+  const next = $('[data-reel-next]', modal);
+  const profile = ig.href;
   let last = null;
+  let cur = 0;
+  const show = (i) => {
+    cur = (i + reals.length) % reals.length;
+    const c = reals[cur];
+    player.src = c.dataset.src;
+    player.poster = $('video', c).poster;
+    player.muted = false;
+    cap.textContent = c.getAttribute('aria-label').replace(/^Play: /, '');
+    ig.href = c.dataset.url || profile;
+    player.play()?.catch?.(() => {});
+  };
   const close = () => {
     player.pause();
     player.removeAttribute('src');
@@ -855,18 +871,20 @@ function reels() {
     unlock();
     last?.focus();
   };
-  cards.forEach((c) => c.addEventListener('click', () => {
+  cards.forEach((c, i) => c.addEventListener('click', () => {
     last = c;
-    player.src = c.dataset.src;
-    player.poster = $('video', c).poster;
-    player.muted = false;
-    ig.hidden = !c.dataset.url;
-    if (c.dataset.url) ig.href = c.dataset.url;
     modal.hidden = false;
     lock();
-    player.play()?.catch?.(() => {});
+    show(i % reals.length);
     $('[data-reel-close]', modal).focus();
   }));
+  prev.addEventListener('click', () => show(cur - 1));
+  next.addEventListener('click', () => show(cur + 1));
+  document.addEventListener('keydown', (e) => {
+    if (modal.hidden) return;
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
   $('[data-reel-close]', modal).addEventListener('click', close);
   modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });

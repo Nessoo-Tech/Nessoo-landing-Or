@@ -424,29 +424,35 @@ html { scroll-behavior: auto; }
           backdrop-filter: blur(8px);
 }
 .rl-modal[hidden] { display: none; }
-.rl-modal-box { display: grid; gap: 12px; width: min(420px, 100%); }
+.rl-modal-box { display: grid; gap: 16px; width: min(460px, 100%); }
 .rl-modal-box video {
   width: 100%;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 160px);
   aspect-ratio: 9 / 16;
   object-fit: cover;
   border-radius: 18px;
   background: #000;
 }
-.rl-modal-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.rl-modal-ig { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 15px; font-weight: 500; }
-.rl-modal-x {
-  margin-left: auto;
-  width: 40px;
-  height: 40px;
+.rl-modal-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 2px 2px 0; }
+.rl-modal-meta { min-width: 0; display: grid; gap: 4px; text-align: left; }
+.rl-modal-cap { color: #fff; font-size: 16px; font-weight: 600; line-height: 1.3; }
+.rl-modal-ig { color: #ffffff99; font-size: 14px; text-decoration: none; justify-self: start; transition: color .2s; }
+.rl-modal-ig:hover { color: #fff; text-decoration: underline; }
+.rl-modal-nav { display: flex; gap: 10px; flex: none; }
+.rl-round, .rl-modal-x {
+  display: grid;
+  place-items: center;
   border: 0;
   border-radius: 50%;
   background: #ffffff1f;
   color: #fff;
-  font-size: 24px;
-  line-height: 1;
   cursor: pointer;
+  transition: background .2s;
 }
+.rl-round { width: 44px; height: 44px; }
+.rl-round:hover, .rl-modal-x:hover { background: #ffffff38; }
+.rl-round:disabled { opacity: .35; cursor: default; }
+.rl-modal-x { position: fixed; top: 20px; right: 20px; width: 44px; height: 44px; }
 
 @media (width <= 767px) {
   .rl-track { animation: none; }
