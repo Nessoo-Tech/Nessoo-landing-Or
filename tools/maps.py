@@ -20,8 +20,8 @@ OUT = os.path.join(ROOT, "shared", "maps")
 HOODS = {
     "long-island-city": (40.7455, -73.9500, "#37619a"),
     "greenpoint": (40.7290, -73.9535, "#ffffff"),
-    "fort-greene": (40.6895, -73.9745, "#ffffff"),
-    "paulus-hook": (40.7180, -74.0395, "#ffffff"),
+    "soho": (40.7233, -74.0010, "#ffffff"),
+    "upper-east-side": (40.7745, -73.9545, "#ffffff"),
     "hoboken": (40.7440, -74.0300, "#1d3f6e"),
     "long-island-city-white": (40.7455, -73.9500, "#ffffff"),
 }

@@ -195,12 +195,19 @@ for old, new in [
 ]:
     assert body.count(old) == 1, old
     body = body.replace(old, new)
+# map cards name SoHo and the Upper East Side (the rest of the page keeps Fort Greene)
+for old, new in [
+    ("14 min to your office<br>from Fort Greene", "14 min to your office<br>from SoHo"),
+    ('<h3>Jersey City</h3><p class="p-tc-small">Paulus Hook</p>', '<h3>Upper East Side</h3><p class="p-tc-small">Yorkville</p>'),
+]:
+    assert body.count(old) == 1, old
+    body = body.replace(old, new)
 # neighborhood cards without photos get that neighborhood's street grid (tools/maps.py)
 for old, hood in [
     ('<article class="p-tc p-tc--lime">', "long-island-city"),
     ('<article class="p-tc p-tc--maroon">', "greenpoint"),
-    ('<article class="p-tc p-tc--purple">', "fort-greene"),
-    ('<article class="p-tc p-tc--peri">', "paulus-hook"),
+    ('<article class="p-tc p-tc--purple">', "soho"),
+    ('<article class="p-tc p-tc--peri">', "upper-east-side"),
 ]:
     i = body.index(old, body.index('class="p-hoods'))
     body = body[:i] + old[:-1] + ' data-map style="--map:url(/shared/maps/%s.svg)">' % hood + body[i + len(old):]
