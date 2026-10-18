@@ -222,12 +222,12 @@ body = body.replace(
     "<p>Example suggestions for Dana R.</p>",
     '<p>Example suggestions for Dana R.<span class="p-osm">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</span></p>',
 )
-# Matches collage: an East River view, a top-floor amenity and a neighborhood street (Unsplash)
+# Matches collage: an East River view, a pool facing FiDi (Pexels) and a neighborhood street (Unsplash)
 for old, new in [
     ('<article class="p-tc p-tc--photo"><img src="/app/img/tall-apartment-door-4b.webp" alt="A deep green apartment door marked 4B" loading="lazy"></article>',
      '<article class="p-tc p-tc--photo"><img src="/app/img/tall-view-east-river.webp" alt="A high-floor window in Long Island City looking across the East River at Midtown Manhattan" loading="lazy"><p class="p-tc-cap"><b>The view</b>East River and Midtown</p></article>'),
     ('<article class="p-tc p-tc--photo p-tc--video"><video muted playsinline loop preload="metadata" poster="/shared/video/ch3-key-poster.jpg" data-auto aria-hidden="true"><source src="/shared/video/ch3-key.mp4" type="video/mp4"></video></article>',
-     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-amenity-rooftop-pool.webp" alt="A rooftop pool and lounge on top of a Manhattan building at golden hour" loading="lazy"><p class="p-tc-cap"><b>Rooftop pool and gym</b>Top-floor amenities</p></article>'),
+     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-amenity-pool-fidi.webp" alt="A person relaxing in a pool facing the Financial District skyline and One World Trade Center" loading="lazy"><p class="p-tc-cap"><b>Pool with a view</b>Financial District skyline</p></article>'),
     ('<article class="p-tc p-tc--photo"><img src="/app/img/tall-renter-windowsill-coffee.webp" alt="A renter with coffee on a windowsill over city rooftops" loading="lazy"></article>',
      '<article class="p-tc p-tc--photo"><img src="/app/img/tall-street-dumbo.webp" alt="People on a cobblestone DUMBO street under the Manhattan Bridge" loading="lazy"><p class="p-tc-cap"><b>DUMBO</b>Your new neighborhood</p></article>'),
 ]:
