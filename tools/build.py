@@ -111,7 +111,7 @@ v2_matches = slice_tag(v2, '<section class="chap matches"')
 v2_matches = v2_matches.replace(slice_tag(v2_matches, '<div class="collage-phone"', "div"), "")
 v2_matches = v2_matches.replace(
     '<div class="tc tc--gap" aria-hidden="true"></div>',
-    '<article class="tc tc--photo"><img src="/app/img/tall-kitchen-morning.webp" alt="A sunny kitchen with plants by the window" loading="lazy">'
+    '<article class="tc tc--photo"><img src="/app/img/tall-living-kitchen.webp" alt="A bright open living room with a sectional sofa and a kitchen behind it" loading="lazy">'
     '<p class="tc-cap"><b>Wants you</b>1BR · Greenpoint · $2,875/mo</p></article>',
 )
 v2_land = slice_tag(v2, '<section class="landlords"')
@@ -222,17 +222,30 @@ body = body.replace(
     "<p>Example suggestions for Dana R.</p>",
     '<p>Example suggestions for Dana R.<span class="p-osm">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</span></p>',
 )
-# Matches collage: an apartment with a view, a building amenity and a neighborhood street (Unsplash)
+# Matches collage: an East River view, a top-floor amenity and a neighborhood street (Unsplash)
 for old, new in [
     ('<article class="p-tc p-tc--photo"><img src="/app/img/tall-apartment-door-4b.webp" alt="A deep green apartment door marked 4B" loading="lazy"></article>',
-     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-view-hudson.webp" alt="A high-floor living room with floor-to-ceiling windows over the Hudson" loading="lazy"><p class="p-tc-cap"><b>The view</b>Floor-to-ceiling windows</p></article>'),
+     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-view-east-river.webp" alt="A high-floor window in Long Island City looking across the East River at Midtown Manhattan" loading="lazy"><p class="p-tc-cap"><b>The view</b>East River and Midtown</p></article>'),
     ('<article class="p-tc p-tc--photo p-tc--video"><video muted playsinline loop preload="metadata" poster="/shared/video/ch3-key-poster.jpg" data-auto aria-hidden="true"><source src="/shared/video/ch3-key.mp4" type="video/mp4"></video></article>',
-     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-amenity-rooftop.webp" alt="A rooftop terrace with tables looking across the East River at Midtown" loading="lazy"><p class="p-tc-cap"><b>Rooftop terrace</b>Building amenities</p></article>'),
+     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-amenity-rooftop-pool.webp" alt="A rooftop pool and lounge on top of a Manhattan building at golden hour" loading="lazy"><p class="p-tc-cap"><b>Rooftop pool and gym</b>Top-floor amenities</p></article>'),
     ('<article class="p-tc p-tc--photo"><img src="/app/img/tall-renter-windowsill-coffee.webp" alt="A renter with coffee on a windowsill over city rooftops" loading="lazy"></article>',
      '<article class="p-tc p-tc--photo"><img src="/app/img/tall-street-dumbo.webp" alt="People on a cobblestone DUMBO street under the Manhattan Bridge" loading="lazy"><p class="p-tc-cap"><b>DUMBO</b>Your new neighborhood</p></article>'),
 ]:
     assert body.count(old) == 1, old[:80]
     body = body.replace(old, new)
+# landlords card: Nessoo Marketing panel with the reach numbers (figures supplied by Nessoo)
+_ll_old = '<figure class="p-ll-quote">'
+assert body.count(_ll_old) == 1
+body = body.replace(_ll_old, (
+    '<div class="ll-mkt">'
+    '<div class="ll-mkt-copy"><p class="ll-mkt-label">Nessoo Marketing</p>'
+    '<h3>Your listings, on the feeds renters already watch.</h3>'
+    '<p>Nessoo uses social media to make content for your properties and listings.</p></div>'
+    '<dl class="ll-stats">'
+    '<div><dt>100M</dt><dd>views every 90 days</dd></div>'
+    '<div><dt>100s</dt><dd>of renters brought in every week</dd></div>'
+    '</dl></div>'
+) + _ll_old)
 # contact address
 body = body.replace("hello@nessoo.com", "admin@nessoo.com")
 
