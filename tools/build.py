@@ -195,6 +195,26 @@ for old, new in [
 ]:
     assert body.count(old) == 1, old
     body = body.replace(old, new)
+# neighborhood cards without photos get that neighborhood's street grid (tools/maps.py)
+for old, hood in [
+    ('<article class="p-tc p-tc--lime">', "long-island-city"),
+    ('<article class="p-tc p-tc--maroon">', "greenpoint"),
+    ('<article class="p-tc p-tc--purple">', "fort-greene"),
+    ('<article class="p-tc p-tc--peri">', "paulus-hook"),
+]:
+    i = body.index(old, body.index('class="p-hoods'))
+    body = body[:i] + old[:-1] + ' data-map style="--map:url(/shared/maps/%s.svg)">' % hood + body[i + len(old):]
+# same idea for the two neighborhood cards in the Matches collage
+for marker, hood in [("Long Island City<", "long-island-city-white"), (">Hoboken<", "hoboken")]:
+    c = body.index('class="p-collage')
+    j = body.index(marker, c)
+    k = body.rindex('<article class="p-tc p-tc--', c, j)
+    end = body.index(">", k)
+    body = body[:end] + ' data-map style="--map:url(/shared/maps/%s.svg)"' % hood + body[end:]
+body = body.replace(
+    "<p>Example suggestions for Dana R.</p>",
+    '<p>Example suggestions for Dana R.<span class="p-osm">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</span></p>',
+)
 # contact address
 body = body.replace("hello@nessoo.com", "admin@nessoo.com")
 

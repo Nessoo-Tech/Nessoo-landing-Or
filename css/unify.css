@@ -187,3 +187,18 @@ html { scroll-behavior: auto; }
 /* Homey chat card (v2) as its own section */
 .p-homeysec { padding: clamp(72px, 9vw, 140px) 0 0; }
 .p-homeysec .p-chat-card { margin-top: 0; }
+
+/* neighborhood cards: real street grid of the named neighborhood behind the content */
+.p-tc[data-map] { isolation: isolate; }
+.p-tc[data-map]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--map) center / cover no-repeat;
+  opacity: .22;
+  pointer-events: none;
+}
+.p-tc--lime[data-map]::before { opacity: .3; }
+.p-osm { display: block; margin-top: 4px; font-size: 11px; opacity: .6; }
+.p-osm a { color: inherit; text-decoration: underline; }
