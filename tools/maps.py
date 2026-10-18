@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.path.join(ROOT, "tools", "maps")
 OUT = os.path.join(ROOT, "shared", "maps")
 
-# name: (lat, lon, stroke) centered on the neighborhood
+# name: (lat, lon, stroke[, span in meters]) centered on the neighborhood
 HOODS = {
     "long-island-city": (40.7455, -73.9500, "#37619a"),
     "greenpoint": (40.7290, -73.9535, "#ffffff"),
@@ -24,6 +24,7 @@ HOODS = {
     "upper-east-side": (40.7745, -73.9545, "#ffffff"),
     "hoboken": (40.7440, -74.0300, "#1d3f6e"),
     "long-island-city-white": (40.7455, -73.9500, "#ffffff"),
+    "manhattan": (40.7560, -73.9820, "#ffffff", 3600),
 }
 W, H = 540, 1148          # 2x the 270x574 card
 SPAN_M = 2300             # card height in meters on the ground
@@ -32,11 +33,11 @@ WIDTHS = {"motorway": 7, "trunk": 6, "primary": 5, "secondary": 4.2, "tertiary":
           "pedestrian": 1.6, "footway": 0.9, "path": 0.9, "cycleway": 0.9}
 
 
-def bbox(lat, lon):
+def bbox(lat, lon, span=SPAN_M):
     m_lat = 111_320
     m_lon = 111_320 * math.cos(math.radians(lat))
-    half_h = SPAN_M / 2 / m_lat
-    half_w = SPAN_M * W / H / 2 / m_lon
+    half_h = span / 2 / m_lat
+    half_w = span * W / H / 2 / m_lon
     return lat - half_h, lon - half_w, lat + half_h, lon + half_w
 
 
@@ -77,8 +78,8 @@ def svg(data, box, stroke):
 
 os.makedirs(CACHE, exist_ok=True)
 os.makedirs(OUT, exist_ok=True)
-for name, (lat, lon, stroke) in HOODS.items():
-    box = bbox(lat, lon)
+for name, (lat, lon, stroke, *span) in HOODS.items():
+    box = bbox(lat, lon, *span)
     out = svg(fetch(name, box), box, stroke)
     with open(os.path.join(OUT, name + ".svg"), "w") as f:
         f.write(out)

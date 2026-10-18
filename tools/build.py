@@ -211,8 +211,8 @@ for old, hood in [
 ]:
     i = body.index(old, body.index('class="p-hoods'))
     body = body[:i] + old[:-1] + ' data-map style="--map:url(/shared/maps/%s.svg)">' % hood + body[i + len(old):]
-# same idea for the two neighborhood cards in the Matches collage
-for marker, hood in [("Long Island City<", "long-island-city-white"), (">Hoboken<", "hoboken")]:
+# same idea for the neighborhood cards in the Matches collage; "Fig. 2" gets Midtown Manhattan
+for marker, hood in [("Long Island City<", "long-island-city-white"), (">Hoboken<", "hoboken"), (">Fig. 2<", "manhattan")]:
     c = body.index('class="p-collage')
     j = body.index(marker, c)
     k = body.rindex('<article class="p-tc p-tc--', c, j)
@@ -222,6 +222,17 @@ body = body.replace(
     "<p>Example suggestions for Dana R.</p>",
     '<p>Example suggestions for Dana R.<span class="p-osm">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</span></p>',
 )
+# Matches collage: an apartment with a view, a building amenity and a neighborhood street (Unsplash)
+for old, new in [
+    ('<article class="p-tc p-tc--photo"><img src="/app/img/tall-apartment-door-4b.webp" alt="A deep green apartment door marked 4B" loading="lazy"></article>',
+     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-view-hudson.webp" alt="A high-floor living room with floor-to-ceiling windows over the Hudson" loading="lazy"><p class="p-tc-cap"><b>The view</b>Floor-to-ceiling windows</p></article>'),
+    ('<article class="p-tc p-tc--photo p-tc--video"><video muted playsinline loop preload="metadata" poster="/shared/video/ch3-key-poster.jpg" data-auto aria-hidden="true"><source src="/shared/video/ch3-key.mp4" type="video/mp4"></video></article>',
+     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-amenity-rooftop.webp" alt="A rooftop terrace with tables looking across the East River at Midtown" loading="lazy"><p class="p-tc-cap"><b>Rooftop terrace</b>Building amenities</p></article>'),
+    ('<article class="p-tc p-tc--photo"><img src="/app/img/tall-renter-windowsill-coffee.webp" alt="A renter with coffee on a windowsill over city rooftops" loading="lazy"></article>',
+     '<article class="p-tc p-tc--photo"><img src="/app/img/tall-street-dumbo.webp" alt="People on a cobblestone DUMBO street under the Manhattan Bridge" loading="lazy"><p class="p-tc-cap"><b>DUMBO</b>Your new neighborhood</p></article>'),
+]:
+    assert body.count(old) == 1, old[:80]
+    body = body.replace(old, new)
 # contact address
 body = body.replace("hello@nessoo.com", "admin@nessoo.com")
 
