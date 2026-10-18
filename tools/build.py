@@ -187,6 +187,14 @@ body = re.sub(r"<script>\s*\(function \(\) \{.*?</script>", "", body, flags=re.S
 
 # copy rule: no em dashes in Nessoo copy
 body = body.replace(" — ", ", ").replace("—", ", ")
+# trust tiles: photos that match Identity, Income and Assets (Unsplash, free license)
+for old, new in [
+    ("--img:url(/shared/photos/renter-windowsill-coffee.jpg);--pos:50% 30%", "--img:url(/shared/photos/identity-passport.jpg);--pos:50% 48%"),
+    ("--img:url(/membership/img/facade.jpg);--pos:50% 50%", "--img:url(/shared/photos/income-check.jpg);--pos:45% 55%"),
+    ("--img:url(/membership/img/stair-rail.jpg);--pos:50% 50%", "--img:url(/shared/photos/assets-savings.jpg);--pos:62% 58%"),
+]:
+    assert body.count(old) == 1, old
+    body = body.replace(old, new)
 # contact address
 body = body.replace("hello@nessoo.com", "admin@nessoo.com")
 
