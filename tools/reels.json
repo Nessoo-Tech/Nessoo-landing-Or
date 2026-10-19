@@ -1,16 +1,17 @@
 {
   "_note": "Reels row ('New York, on camera.'). Each reel: video + poster in shared/reels/, caption, view count as shown on Instagram, and the post URL. Entries with placeholder:true use stand-in clips until the real reels arrive.",
-  "handle": "mynessoo",
+  "handle": "nycapartments.nessoo",
   "reels": [
     {
-      "caption": "How much is rent in New York?",
+      "caption": "A Gramercy penthouse with Empire State views",
       "views": "",
       "url": "",
       "crop": "1132:1740:0:323",
       "video": "/shared/reels/01.mp4",
       "poster": "/shared/reels/01.jpg",
       "source": "01.mov",
-      "preview": "/shared/reels/01-preview.mp4"
+      "preview": "/shared/reels/01-preview.mp4",
+      "preview_at": 22
     },
     {
       "caption": "Rent it or buy it?",
@@ -53,14 +54,15 @@
       "preview": "/shared/reels/05-preview.mp4"
     },
     {
-      "caption": "What do you pay for rent?",
+      "caption": "Just moved in, Financial District",
       "views": "",
       "url": "",
       "crop": "1132:1740:0:323",
       "video": "/shared/reels/06.mp4",
       "poster": "/shared/reels/06.jpg",
       "source": "06.mov",
-      "preview": "/shared/reels/06-preview.mp4"
+      "preview": "/shared/reels/06-preview.mp4",
+      "preview_at": 16
     },
     {
       "caption": "J Balvin: $1 billion or dinner with God?",
