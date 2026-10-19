@@ -2,12 +2,76 @@
   "_note": "Reels row ('New York, on camera.'). Each reel: video + poster in shared/reels/, caption, view count as shown on Instagram, and the post URL. Entries with placeholder:true use stand-in clips until the real reels arrive.",
   "handle": "mynessoo",
   "reels": [
-    {"video": "/shared/video/hero-vertical.mp4", "poster": "/shared/video/hero-vertical-poster.jpg", "caption": "Literally the craziest apartment", "views": "", "url": "", "placeholder": true},
-    {"video": "/shared/video/ch4-door.mp4", "poster": "/shared/video/ch4-door-poster.jpg", "caption": "One of the rarest apartments in NYC", "views": "", "url": "", "placeholder": true},
-    {"video": "/shared/video/ch2-stoop.mp4", "poster": "/shared/video/ch2-stoop-poster.jpg", "caption": "Street interview", "views": "", "url": "", "placeholder": true},
-    {"video": "/shared/video/ch3-key.mp4", "poster": "/shared/video/ch3-key-poster.jpg", "caption": "You saw those ladders? We got the kitchen.", "views": "", "url": "", "placeholder": true},
-    {"video": "/shared/video/ch1-city.mp4", "poster": "/shared/video/ch1-city-poster.jpg", "caption": "Street interview", "views": "", "url": "", "placeholder": true},
-    {"video": "/shared/video/hero-vertical.mp4", "poster": "/shared/video/hero-vertical-poster.jpg", "caption": "Brokers are going to hate me for showing this", "views": "", "url": "", "placeholder": true},
-    {"video": "/shared/video/ch4-door.mp4", "poster": "/shared/video/ch4-door-poster.jpg", "caption": "Apartment tour", "views": "", "url": "", "placeholder": true}
+    {
+      "caption": "How much is rent in New York?",
+      "views": "",
+      "url": "",
+      "crop": "1132:1740:0:323",
+      "video": "/shared/reels/01.mp4",
+      "poster": "/shared/reels/01.jpg",
+      "source": "01.mov",
+      "preview": "/shared/reels/01-preview.mp4"
+    },
+    {
+      "caption": "Rent it or buy it?",
+      "views": "",
+      "url": "",
+      "crop": "1132:1740:0:323",
+      "video": "/shared/reels/02.mp4",
+      "poster": "/shared/reels/02.jpg",
+      "source": "02.mov",
+      "preview": "/shared/reels/02-preview.mp4"
+    },
+    {
+      "caption": "Apartment tour, unit 106",
+      "views": "",
+      "url": "",
+      "crop": "1132:1740:0:323",
+      "video": "/shared/reels/03.mp4",
+      "poster": "/shared/reels/03.jpg",
+      "source": "03.mov",
+      "preview": "/shared/reels/03-preview.mp4"
+    },
+    {
+      "caption": "The things people do to live here",
+      "views": "",
+      "url": "",
+      "crop": "1132:1740:0:323",
+      "video": "/shared/reels/04.mp4",
+      "poster": "/shared/reels/04.jpg",
+      "source": "04.mov",
+      "preview": "/shared/reels/04-preview.mp4"
+    },
+    {
+      "caption": "Morning with an Empire State view",
+      "views": "",
+      "url": "",
+      "crop": "1132:1740:0:323",
+      "video": "/shared/reels/05.mp4",
+      "poster": "/shared/reels/05.jpg",
+      "source": "05.mov",
+      "preview": "/shared/reels/05-preview.mp4"
+    },
+    {
+      "caption": "What do you pay for rent?",
+      "views": "",
+      "url": "",
+      "crop": "1132:1740:0:323",
+      "video": "/shared/reels/06.mp4",
+      "poster": "/shared/reels/06.jpg",
+      "source": "06.mov",
+      "preview": "/shared/reels/06-preview.mp4"
+    },
+    {
+      "caption": "J Balvin: $1 billion or dinner with God?",
+      "views": "",
+      "url": "",
+      "crop": "1320:1800:0:485",
+      "t": 28,
+      "video": "/shared/reels/07.mp4",
+      "poster": "/shared/reels/07.jpg",
+      "source": "07.mov",
+      "preview": "/shared/reels/07-preview.mp4"
+    }
   ]
 }

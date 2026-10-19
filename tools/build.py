@@ -173,7 +173,7 @@ def _reel(r, dup=False):
         '<button class="rl-card" type="button" data-reel data-src="%s" data-url="%s"%s>'
         '<video muted playsinline loop preload="none" poster="%s" aria-hidden="true"><source src="%s" type="video/mp4"></video>'
         '<span class="rl-cap">%s</span>%s<span class="rl-play" aria-hidden="true">%s</span></button>'
-    ) % (e(r["video"]), e(r.get("url", "")), attrs, e(r["poster"]), e(r["video"]), e(r["caption"]), views,
+    ) % (e(r["video"]), e(r.get("url", "")), attrs, e(r["poster"]), e(r.get("preview", r["video"])), e(r["caption"]), views,
          '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>')
 
 
