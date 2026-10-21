@@ -339,7 +339,7 @@ function stage() {
   const stepAt = (t) => (t < 0.9 ? 0 : t < 2.15 ? 'w' : Math.max(1, Math.min(LAST_STEP, Math.floor(t - STEPS_AT + 1.15))));
   tl.eventCallback('onUpdate', () => setStep(stepAt(tl.time())));
   const st = ScrollTrigger.create({
-    trigger: sec, start: 'top top', end: () => '+=' + Math.round(vh() * 7.1),
+    trigger: sec, start: 'top top', end: () => '+=' + Math.round(vh() * 3.0),
     pin, scrub: 0.6, animation: tl, invalidateOnRefresh: true,
   });
   const goTo = (n) => {
